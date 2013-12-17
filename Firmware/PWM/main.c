@@ -1,6 +1,11 @@
 #include <stm32f4xx.h>
 #include <stm32f4xx_gpio.h>
 
+void delay(uint32_t count)
+{
+        while(count--);
+}
+
 void init_RCC()
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
@@ -38,7 +43,7 @@ void init_TIM()
 	TIM_OCInitTypeDef TIM_OCInitStruct = {
 		.TIM_OutputState = TIM_OutputState_Enable,
 		.TIM_OCMode = TIM_OCMode_PWM1,
-		.TIM_Pulse = 1680
+		.TIM_Pulse = 0
 	};
 
 	TIM_OC1Init(TIM4, &TIM_OCInitStruct);
@@ -49,11 +54,38 @@ void init_TIM()
 	TIM_Cmd(TIM4, ENABLE);
 }
 
+#define PWM_INC 1
+#define PWM_DEC 0
+
 int main()
 {
 	init_RCC();
 	init_GPIO();
 	init_TIM();
+
+	
+	int PWM_Status = PWM_INC, PWM_CCR = 0;
+
+	while(1) {
+		/* If the PWM status is set to be increased */
+		if(PWM_Status == PWM_INC) {
+			PWM_CCR += 10;
+			/* Check if the PWM duty cycle achieve to 100% */
+			if(PWM_CCR == 1680) PWM_Status = PWM_DEC;
+		/* If the PWM status is set to be decreased */
+		} else {
+			PWM_CCR -= 10;
+			/* Check if the PWM duty cycle achieve to 0% */
+			if(PWM_CCR == 0) PWM_Status = PWM_INC;
+		}
+
+		TIM4->CCR1 = PWM_CCR;
+		TIM4->CCR2 = PWM_CCR;
+		TIM4->CCR3 = PWM_CCR;
+		TIM4->CCR4 = PWM_CCR;
+
+		delay(10000L);
+	}
 
 	return 0;
 }
