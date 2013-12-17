@@ -1,6 +1,11 @@
 #include <stm32f4xx.h>
 #include <stm32f4xx_gpio.h>
 
+void delay(uint32_t count)
+{
+	while(count--);
+}
+
 void init_GPIO()
 {
 	GPIO_InitTypeDef GPIO_InitStruct = {
@@ -21,5 +26,6 @@ int main()
 	init_GPIO();
 
 	GPIO_SetBits(GPIOD, GPIO_Pin_12);
+
 	return 0;
 }
