@@ -25,7 +25,20 @@ int main()
 {
 	init_GPIO();
 
-	GPIO_SetBits(GPIOD, GPIO_Pin_12);
+	int digitStatus = 1;
+
+	while(1) {
+		GPIO_WriteBit(GPIOD, GPIO_Pin_12, digitStatus);
+		delay(1000000L);
+		GPIO_WriteBit(GPIOD, GPIO_Pin_13, digitStatus);	
+		delay(1000000L);
+		GPIO_WriteBit(GPIOD, GPIO_Pin_14, digitStatus);
+		delay(1000000L);
+		GPIO_WriteBit(GPIOD, GPIO_Pin_15, digitStatus);
+		delay(1000000L);
+
+		digitStatus = (digitStatus + 1) % 2;
+	}
 
 	return 0;
 }
