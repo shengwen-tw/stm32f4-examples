@@ -24,18 +24,18 @@ CFLAGS+=-Wl,-T,stm32_flash.ld
 #Libraries
 
 #Stm32 libraries
-ST_LIB=./Libraries/STM32F4xx_StdPeriph_Driver
-CFLAGS+=-I./Libraries/CMSIS/ST/STM32F4xx/Include
+ST_LIB=../Libraries/STM32F4xx_StdPeriph_Driver
+CFLAGS+=-I../Libraries/CMSIS/ST/STM32F4xx/Include
 
 #CMSIS libraries
-CFLAGS+=-I./Libraries/CMSIS/Include
+CFLAGS+=-I../Libraries/CMSIS/Include
 
 #StdPeriph includes
 CFLAGS+=-I$(ST_LIB)/inc
 
 #======================================================================#
 #Source code
-SRC=./Libraries/CMSIS/system_stm32f4xx.c
+SRC=../Libraries/CMSIS/system_stm32f4xx.c
 
 #StdPeriph
 SRC+=$(ST_LIB)/src/misc.c \
