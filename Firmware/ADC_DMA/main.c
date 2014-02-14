@@ -133,9 +133,14 @@ void init_ADC()
 int main()
 {
 	init_USART(9600);
+	init_ADC();
+
+	char ADC_Prompt[100] = {'\0'};
 
 	while(1) {
-		send_data("ADC Value:");
+		sprintf(ADC_Prompt, "ADC Value = %d\n\r", ADC_Value);
+
+		send_data(ADC_Prompt);
 		delay(1000000L);		
 	}
 

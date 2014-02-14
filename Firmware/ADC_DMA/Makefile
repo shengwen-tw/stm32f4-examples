@@ -13,6 +13,7 @@ OBJCOPY=arm-none-eabi-objcopy
 CFLAGS=-g -mlittle-endian -mthumb
 CFLAGS+=-mcpu=cortex-m4
 CFLAGS+=-mfpu=fpv4-sp-d16 -mfloat-abi=softfp
+CFLAGS+=-ffreestanding
 CFLAGS+=-D USE_STDPERIPH_DRIVER
 CFLAGS+=-I./
 
