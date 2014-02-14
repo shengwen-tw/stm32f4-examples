@@ -33,6 +33,9 @@ CFLAGS+=-I../Libraries/CMSIS/Include
 #StdPeriph includes
 CFLAGS+=-I$(ST_LIB)/inc
 
+#Std C Lib
+CFLAGS+=-I./stdlib/
+
 #======================================================================#
 #Source code
 SRC=../Libraries/CMSIS/system_stm32f4xx.c
@@ -49,6 +52,9 @@ SRC+=$(ST_LIB)/src/misc.c \
 	$(ST_LIB)/src/stm32f4xx_i2c.c \
 	$(ST_LIB)/src/stm32f4xx_dma.c \
 	$(ST_LIB)/src/stm32f4xx_adc.c
+
+#Std C Lib
+SRC+=./stdlib/*.c
 
 #Major programs
 SRC+=./main.c
