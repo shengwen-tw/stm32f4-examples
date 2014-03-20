@@ -40,13 +40,13 @@ int main()
 
 	while(1) {
 		GPIO_WriteBit(GPIOD, GPIO_Pin_12, digitStatus);
-		delay(100);
+		delay(1000);
 		GPIO_WriteBit(GPIOD, GPIO_Pin_13, digitStatus);	
-		delay(100);
+		delay(1000);
 		GPIO_WriteBit(GPIOD, GPIO_Pin_14, digitStatus);
-		delay(100);
+		delay(1000);
 		GPIO_WriteBit(GPIOD, GPIO_Pin_15, digitStatus);
-		delay(100);
+		delay(1000);
 
 		digitStatus = (digitStatus + 1) % 2;
 	}
