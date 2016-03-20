@@ -15,3 +15,5 @@
 * Task creation
 * Semaphore
 * Queue
+
+![stm32f4-discovery](stm32f4-discovery.jpg)
