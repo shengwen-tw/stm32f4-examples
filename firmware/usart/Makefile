@@ -10,10 +10,16 @@ OBJCOPY=arm-none-eabi-objcopy
 
 #======================================================================#
 #Flags
-CFLAGS=-g -mlittle-endian -mthumb
-CFLAGS+=-mcpu=cortex-m4
-CFLAGS+=-mfpu=fpv4-sp-d16 -mfloat-abi=softfp
+CFLAGS=-g -mlittle-endian -mthumb \
+	-mcpu=cortex-m4 \
+	-mfpu=fpv4-sp-d16 -mfloat-abi=hard \
+	--specs=nano.specs \
+	--specs=nosys.specs
 CFLAGS+=-D USE_STDPERIPH_DRIVER
+CFLAGS+=-D STM32F4xx
+CFLAGS+=-D __FPU_PRESENT=1 \
+        -D ARM_MATH_CM4 \
+	-D __FPU_USED=1
 CFLAGS+=-I./
 
 
@@ -21,7 +27,7 @@ CFLAGS+=-I./
 CFLAGS+=-Wl,-T,stm32_flash.ld
 
 #======================================================================#
-#Libraries
+#lib
 
 #Stm32 libraries
 ST_LIB=./lib/STM32F4xx_StdPeriph_Driver
