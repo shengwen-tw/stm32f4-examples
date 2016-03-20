@@ -11,6 +11,7 @@ BIN_IMAGE=firmware.bin
 
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
+GDB=arm-none-eabi-gdb
 
 #======================================================================#
 
@@ -78,7 +79,7 @@ SRC+=./main.c
 
 #Make rules
 
-#Make all
+#Compile
 all:$(BIN_IMAGE)
 
 $(BIN_IMAGE):$(EXECUTABLE)
@@ -92,13 +93,22 @@ $(STARTUP_OBJ): $(STARTUP)
 $(EXECUTABLE):$(SRC) $(STARTUP_OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-#Make clean
+#clean
 clean:
 	rm -rf $(EXECUTABLE)
 	rm -rf $(BIN_IMAGE)
-#Make flash
+
+#Flash
 flash:
 	st-flash write $(BIN_IMAGE) 0x8000000
+
+#OpenOCD GDB server
+openocd:
+	openocd -f ./openocd.cfg
+
+#GNU Debugger
+gdbauto:
+	cgdb -d $(GDB) -x ./openocd_gdb.gdb
 
 #======================================================================
 .PHONY:all clean flash
