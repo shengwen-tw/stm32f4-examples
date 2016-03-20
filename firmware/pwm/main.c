@@ -84,7 +84,7 @@ int main()
 		TIM4->CCR3 = PWM_CCR;
 		TIM4->CCR4 = PWM_CCR;
 
-		delay(10000L);
+		delay(100000L);
 	}
 
 	return 0;
