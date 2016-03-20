@@ -1,9 +1,17 @@
-#stm32_pratice
-* Author:Shengwen <shengwen1997.tw@gmail.com>
-* Purpose:Learn how to develop stm32 program
+#stm32f4 examples
 
-#Samples
-* GPIO
+| Author | Cheng Shengwen            |
+|--------|---------------------------|
+| Email  | shengwen1997.tw@gmail.com |
+
+###Peripheral examples
+* GPIO Output
 * PWM
-* USART(Type **sudo screen /dev/ttyUSB0 9600** to test the code)
+* USART
+  * Type command **sudo screen /dev/ttyUSB0 9600** to test the program
 * Systick
+
+###FreeRTOS examples
+* Task creation
+* Semaphore
+* Queue
