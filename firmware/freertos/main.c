@@ -31,7 +31,7 @@ void task1()
 
 		digitStatus = (digitStatus + 1) % 2;
 
-		vTaskDelay(MILLI_SECOND_TICK);
+		vTaskDelay(MILLI_SECOND_TICK * 1000);
 	}
 }
 
@@ -45,7 +45,7 @@ void task2()
 
 		digitStatus = (digitStatus + 1) % 2;
 
-		vTaskDelay(MILLI_SECOND_TICK);
+		vTaskDelay(MILLI_SECOND_TICK * 1000);
 	}
 }
 
