@@ -5,7 +5,7 @@ void delay(uint32_t count)
 	while(count--);
 }
 
-void usart3_init()
+void usart3_init(void)
 {
 	/* RCC initialization */
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
@@ -35,14 +35,26 @@ void usart3_init()
 	USART_Init(USART3, &USART_InitStruct);
 
 	USART_Cmd(USART3, ENABLE);
+
+	USART_ClearFlag(USART3, USART_FLAG_TC);
+}
+
+char usart_getc(void)
+{
+	while(USART_GetFlagStatus(USART3, USART_FLAG_RXNE) != SET);
+	return USART_ReceiveData(USART3);
+}
+
+void usart_putc(char data)
+{
+	USART_SendData(USART3, data);
+	while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET); //Wait for USART transfer complete flag
 }
 
 void usart_puts(char *string)
 {
-	while(*string != '\0') {
-		USART_SendData(USART3, (uint16_t)(*string));
-		string++;
-		while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET);
+	for(; *string != '\0'; string++) {
+		usart_putc(*string);
 	}
 }
 
@@ -50,9 +62,13 @@ int main()
 {
 	usart3_init();
 
+	usart_puts("STM32: Hello World!\n\r");
+
+
 	while(1) {
-		usart_puts("Hello World!\n\r");
-		delay(1000000L);		
+		char received_data = usart_getc();
+
+		usart_putc(received_data);
 	}
 
 	return 0;
