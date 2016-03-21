@@ -12,6 +12,8 @@
 * GPIO Output
 * PWM
 * USART
+  * w/o DMA
+  * w/ DMA
   * Type command **sudo screen /dev/ttyUSB0 9600** to test the program
 * Systick
 
