@@ -6,14 +6,18 @@ void delay(uint32_t count)
         while(count--);
 }
 
-void init_RCC()
+void pwm_init()
 {
+	/* RCC initialization */
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-}
 
-void init_GPIO()
-{
+	GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);
+        GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4);
+        GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_TIM4);
+        GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_TIM4);
+
+	/* GPIO initialization */
 	GPIO_InitTypeDef GPIO_InitStruct = {
 		.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15,
 		.GPIO_Mode = GPIO_Mode_AF,
@@ -21,25 +25,17 @@ void init_GPIO()
 		.GPIO_OType =GPIO_OType_PP,
 		.GPIO_PuPd = GPIO_PuPd_NOPULL
 	};
-
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);
-        GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4);
-        GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_TIM4);
-        GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_TIM4);
-
 	GPIO_Init(GPIOD, &GPIO_InitStruct);
-}
 
-void init_TIM()
-{
+	/* Timer initialization */
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct = {
 		.TIM_Period = 1680 - 1,
 		.TIM_Prescaler = 500 - 1,
 		.TIM_CounterMode = TIM_CounterMode_Up
-	};
-	
+	};	
 	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseInitStruct);
 
+	/* PWM output initialization */
 	TIM_OCInitTypeDef TIM_OCInitStruct = {
 		.TIM_OutputState = TIM_OutputState_Enable,
 		.TIM_OCMode = TIM_OCMode_PWM1,
@@ -59,10 +55,7 @@ void init_TIM()
 
 int main()
 {
-	init_RCC();
-	init_GPIO();
-	init_TIM();
-
+	pwm_init();
 	
 	int PWM_Status = PWM_INC, PWM_CCR = 0;
 
