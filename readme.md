@@ -50,7 +50,7 @@ sudo make install
 
 ### 2. st-link
 
-As a alternation of OpenOCD, you could use ST-Link, which is provided by STMicroelectronics.
+As an alternation of OpenOCD, you could use ST-Link, which is provided by STMicroelectronics.
 
 ```
 git clone http://github.com/texane/stlink.git
