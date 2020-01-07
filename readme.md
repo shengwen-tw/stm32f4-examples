@@ -41,6 +41,7 @@ sudo apt install build-essential git zlib1g-dev libsdl1.2-dev automake* autoconf
 ```
 git clone git://git.code.sf.net/p/openocd/code openocd
 cd openocd
+git submodule update --init --recursive
 ./bootstrap
 ./configure --prefix=/usr/local  --enable-jlink --enable-amtjtagaccel --enable-buspirate  --enable-stlink   --disable-libftdi
 echo -e "all:\ninstall:" > doc/Makefile
