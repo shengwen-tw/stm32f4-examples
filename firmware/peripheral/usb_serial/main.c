@@ -5,13 +5,7 @@
 #include "usbd_cdc_vcp.h"
 #include "stm32f4xx_conf.h"
 
-#define TESTRESULT_ADDRESS         0x080FFFFC
-#define ALLTEST_PASS               0x00000000
-#define ALLTEST_FAIL               0x55555555
-
 __ALIGN_BEGIN USB_OTG_CORE_HANDLE  USB_OTG_dev __ALIGN_END;
-
-__IO uint32_t TimingDelay;
 
 int main(void)
 {
@@ -62,38 +56,3 @@ int main(void)
 		}
 	}
 }
-
-void Delay(__IO uint32_t nTime)
-{
-	TimingDelay = nTime;
-
-	while(TimingDelay != 0);
-}
-
-void TimingDelay_Decrement(void)
-{
-	if (TimingDelay != 0x00) { 
-		TimingDelay--;
-	}
-}
-
-void Fail_Handler(void)
-{
-	/* Erase last sector */ 
-	FLASH_EraseSector(FLASH_Sector_11, VoltageRange_3);
-	/* Write FAIL code at last word in the flash memory */
-	FLASH_ProgramWord(TESTRESULT_ADDRESS, ALLTEST_FAIL);
-
-	while(1) {
-		/* Toggle Red LED */
-		STM_EVAL_LEDToggle(LED5);
-		Delay(5);
-	}
-}
-
-#ifdef  USE_FULL_ASSERT
-void assert_failed(uint8_t* file, uint32_t line)
-{ 
-	while (1);
-}
-#endif
