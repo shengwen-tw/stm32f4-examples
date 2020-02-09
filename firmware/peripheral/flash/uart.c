@@ -42,8 +42,9 @@ char usart_getc(void)
 
 void usart_putc(char data)
 {
+	while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET);
 	USART_SendData(USART3, data);
-	while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET); //Wait for USART transfer complete flag
+	while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET);
 }
 
 void usart_puts(char *string)
