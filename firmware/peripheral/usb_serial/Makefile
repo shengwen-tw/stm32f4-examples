@@ -78,7 +78,7 @@ SRC+=./lib/STM32F4-Discovery/stm32f4_discovery.c \
 
 #Major programs
 SRC+=./main.c \
-	./stm32fxxx_it.c \
+	./interrupt.c \
 	./usb/usb_bsp.c \
 	./usb/usbd_desc.c \
 	./usb/usbd_usr.c \
