@@ -47,8 +47,11 @@ char usart_getc(void)
 
 void usart_putc(char data)
 {
+	/* wait until TXE (Transmit Data Register Empty) flag is set */
+	while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET);
 	USART_SendData(USART3, data);
-	while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET); //Wait for USART transfer complete flag
+	/* wait until TC (Tranmission Complete) flag is set */
+	while(USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET);
 }
 
 void usart_puts(char *string)
