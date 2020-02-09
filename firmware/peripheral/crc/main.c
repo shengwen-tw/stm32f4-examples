@@ -63,6 +63,10 @@ int main(void)
 {
 	usart3_init();
 
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_CRC, ENABLE);
+
+	char s[30] = {0};
+
 	uint32_t data[10];
 	int i;
 	for(i = 0;i < 10; i++) {
@@ -71,8 +75,16 @@ int main(void)
 
 	float crc_val = CRC_CalcBlockCRC(data, 10);
 
-	char s[30] = {0};
-	sprintf(s, "crc value = %u\n\r", crc_val);
+	uint32_t test_data = 0x0a;
+	CRC_ResetDR(); //remember to clear dr before calculating crc
+	CRC_CalcCRC(test_data);
+	crc_val = CRC_GetCRC();
+	sprintf(s, "crc value of %x = %u\n\r", test_data,  crc_val);
+	usart_puts(s);
+
+	CRC_ResetDR();
+	crc_val = CRC_CalcBlockCRC(data, 10);
+	sprintf(s, "crc value of array = %u\n\r", crc_val);
 	usart_puts(s);
 
 	return 0;
