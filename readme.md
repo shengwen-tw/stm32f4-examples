@@ -1,34 +1,36 @@
-## stm32f4 examples
+## stm32f4_examples
 
-Some simple STM32F4 programs for beginners.
+Some example code of STM32F4 for beginners.
 
-STM32F407 Discovery board are used.
+## Development platform and hardware
+
+GNU/Linux and GCC toolchain are used, and the code have been tested on STM32F407-Discovery board.
 
 <img src="stm32f4-discovery.jpg" height="354px" width="392px" />
 
-### Peripheral manipulation
-* GPIO Output
-* PWM
-* USART
-  * w/o DMA
-  * w/ DMA
+### For Peripheral manipulation examples:
+1. GPIO Output (LED)
+2. PWM
+3. UART read and write
   * Type command **sudo screen /dev/ttyUSB0 9600** to test the program
-* Systick
+4. DMA (using UART as example)
+5. Systick
+6. USB VCP (Virtual COM Port)
 
-### FreeRTOS (utilizie the hardware resource with real-time operating system)
-* Task creation
-* Semaphore
-* Queue
+### For FreeRTOS examples:
+1. Task creation
+2. Semaphore
+3. Queue
 
-## Fix USB device premission denied error
+## Fixing USB device premission denied error for GNU screen
 
-Add user into the UNIX dialout group:
-
-`sudo gpasswd --add username dialout`
+```
+sudo gpasswd --add username dialout
+```
 
 ## Developement environment setup
 
-This tutorial provides a brief tutorial of setting up the environment (toolchain, on-chop debugger, flash program, etc) for developing STM32 program.
+Here we provide a brief tutorial of setting up the environment (i.e., GCC toolchain, debugger, flash tool)
 
 ### 0.Prerequisite
 
