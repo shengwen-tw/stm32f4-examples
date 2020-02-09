@@ -15,7 +15,9 @@ GNU/Linux and GCC toolchain are used, and the code have been tested on STM32F407
   * Type command **sudo screen /dev/ttyUSB0 9600** to test the program
 4. DMA (using UART as example)
 5. Systick
-6. USB VCP (Virtual COM Port)
+6. CRC
+7. Flash 
+8. USB VCP (Virtual COM Port)
 
 ### For FreeRTOS examples:
 1. Task creation
