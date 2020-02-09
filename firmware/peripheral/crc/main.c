@@ -71,7 +71,7 @@ int main(void)
 
 	float crc_val = CRC_CalcBlockCRC(data, 10);
 
-	char s[30];
+	char s[30] = {0};
 	sprintf(s, "crc value = %u\n\r", crc_val);
 	usart_puts(s);
 
