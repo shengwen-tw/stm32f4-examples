@@ -21,7 +21,6 @@ CFLAGS+=-D __FPU_PRESENT=1 \
         -D ARM_MATH_CM4 \
 	-D __FPU_USED=1 \
 	-D USE_USB_OTG_FS=1
-CFLAGS+=-I./
 
 #stm32-flash
 CFLAGS+=-Wl,-T,stm32_flash.ld
@@ -48,6 +47,9 @@ CFLAGS+=-I./lib/STM32_USB_OTG_Driver/inc
 
 #stm32f4-discovery utilities
 CFLAGS+=-I./lib/STM32F4-Discovery
+
+CFLAGS+=-I./
+CFLAGS+=-I./usb/
 
 #======================================================================#
 #Source code
@@ -77,11 +79,11 @@ SRC+=./lib/STM32F4-Discovery/stm32f4_discovery.c \
 #Major programs
 SRC+=./main.c \
 	./stm32fxxx_it.c \
-	./usb_bsp.c \
-	./usbd_desc.c \
-	./usbd_usr.c \
-	./usb_core.c \
-	./usbd_cdc_vcp.c \
+	./usb/usb_bsp.c \
+	./usb/usbd_desc.c \
+	./usb/usbd_usr.c \
+	./usb/usb_core.c \
+	./usb/usbd_cdc_vcp.c \
 
 #======================================================================#
 #STM32 startup file
