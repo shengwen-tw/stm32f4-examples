@@ -110,6 +110,8 @@ $(EXECUTABLE):$(SRC) $(STARTUP_OBJ)
 clean:
 	rm -rf $(EXECUTABLE)
 	rm -rf $(BIN_IMAGE)
+	rm -rf $(STARTUP_OBJ)
+	rm -rf *.o
 #Make flash
 flash:
 	st-flash write $(BIN_IMAGE) 0x8000000
