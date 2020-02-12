@@ -65,18 +65,18 @@ sudo make install
 #sudo cp 49-stlinkv2.rules /etc/udev/rules.d/
 ```
 
-### 3. ARM GCC toolchain 5.4
+### 3. ARM GCC toolchain 9
 
 ```
-wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
-tar -jxf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
-rm gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
+wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
+tar jxf ./gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
+rm gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2
 ```
 
 edit "~/.bashrc" and append the following instruction:
 
 ```
-PATH=$PATH:~/workspace/tools/gcc-arm-none-eabi-5_4-2016q3/bin
+PATH=$PATH:~/workspace/tools/gcc-arm-none-eabi-9-2019-q4-major/bin
 ```
 
 ### 4. Restart the terminal
