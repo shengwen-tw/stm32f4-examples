@@ -83,19 +83,19 @@ PATH=$PATH:${YOUR_PATH}/gcc-arm-none-eabi-9-2019-q4-major/bin
 
 ## Build and run
 
-1. build:
+1. Build:
 
 ```
 make
 ```
 
-2. upload binary:
+2. Upload binary:
 
 ```
 make flash
 ```
 
-3. to observe the UART examples, type:
+3. To observe the UART examples, type:
 
 ```
 sudo screen /dev/ttyUSB0 9600
